@@ -154,12 +154,16 @@ const MahjongSelector: React.FC = () => {
           // Create an array with 'value' number of elements and map over it to render the Image components
           [...Array(value)].map((_, index) => (
             <button key={`${tile}-${index}`} onClick={() => handleTileDeselect(tile)}>
-              <Image
-                src={`${imgRoot}${tile}.png`}
-                alt={tile}
-                width={30}
-                height={50}
-              />
+              <div className='flex'>
+                <Image
+                  src={`${imgRoot}${tile}.png`}
+                  alt={tile}
+                  width={30}
+                  height={50}
+                />
+                <div>|</div>
+              </div>
+
             </button>
           ))
         ))}

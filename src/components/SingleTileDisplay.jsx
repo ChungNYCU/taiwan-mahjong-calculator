@@ -11,13 +11,14 @@ const mahjongTiles = new Map([
 const imgRoot = "/tileImgs/Black/"
 const SingleTileDisplay = ({ tile }) => {
     return (
-        <div>
+        <div className='flex'>
             <Image
                 src={`${imgRoot}${mahjongTiles.get(tile)}.png`}
                 alt={tile}
                 width={30}
                 height={50}
             />
+            <div>|</div>
         </div>
     )
 }
