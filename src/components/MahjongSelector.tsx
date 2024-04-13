@@ -2,12 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-
-interface MahjongTile {
-  id: number;
-  name: string;
-  image: string; // URL to the tile image
-}
+import syanten from 'syanten';
+import StatusParser from './StatusParser'
 
 const mahjongTiles: Map<string, number> = new Map([
   ["Man1", 0], ["Man2", 0], ["Man3", 0], ["Man4", 0], ["Man5", 0], ["Man6", 0], ["Man7", 0], ["Man8", 0], ["Man9", 0],
@@ -22,14 +18,42 @@ const imgPath: Array<string> = [
   "Sou1", "Sou2", "Sou3", "Sou4", "Sou5", "Sou6", "Sou7", "Sou8", "Sou9",
   "Ton", "Nan", "Shaa", "Pei", "Chun", "Hatsu", "Haku"
 ]
+const haiTemplate = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0]
+]
 
 const MahjongSelector: React.FC = () => {
   const [selectedTile, setSelectedTile] = useState<Map<string, number>>(mahjongTiles);
   const [resString, setResString] = useState<string>("")
+  const [currentHai, setCurrentHai] = useState<Array<Array<Number>>>(haiTemplate)
+  const [currentStatus, setCurrentStatus] = useState<any>({})
+
 
   useEffect(() => {
-    handleGenerateBtnClick()
+    generateTenHoString()
+    transformHaiToResult()
   }, [selectedTile])
+
+  useEffect(() => {
+    //@ts-ignore
+    const result: any = syanten.hairi(currentHai)
+    //@ts-ignore
+    setCurrentStatus(result)
+  }, [currentHai])
+
+  const transformHaiToResult = () => {
+    //@ts-ignore
+    const hai: Any = [
+      [selectedTile.get('Man1'), selectedTile.get('Man2'), selectedTile.get('Man3'), selectedTile.get('Man4'), selectedTile.get('Man5'), selectedTile.get('Man6'), selectedTile.get('Man7'), selectedTile.get('Man8'), selectedTile.get('Man9'),],
+      [selectedTile.get('Pin1'), selectedTile.get('Pin2'), selectedTile.get('Pin3'), selectedTile.get('Pin4'), selectedTile.get('Pin5'), selectedTile.get('Pin6'), selectedTile.get('Pin7'), selectedTile.get('Pin8'), selectedTile.get('Pin9'),],
+      [selectedTile.get('Sou1'), selectedTile.get('Sou2'), selectedTile.get('Sou3'), selectedTile.get('Sou4'), selectedTile.get('Sou5'), selectedTile.get('Sou6'), selectedTile.get('Sou7'), selectedTile.get('Sou8'), selectedTile.get('Sou9'),],
+      [selectedTile.get('Ton'), selectedTile.get('Nan'), selectedTile.get('Shaa'), selectedTile.get('Pei'), selectedTile.get('Haku'), selectedTile.get('Hatsu'), selectedTile.get('Chun'),]
+    ]
+    setCurrentHai(hai)
+  }
 
   const handleTileSelect = (tile: string) => {
     // Create a new Map from the existing one for immutability
@@ -59,7 +83,7 @@ const MahjongSelector: React.FC = () => {
     setSelectedTile(newSelectedTile);
   };
 
-  const handleGenerateBtnClick = () => {
+  const generateTenHoString = () => {
     let hasValue = false
     let results = [];
     for (let i = 0; i < 9; i++) {
@@ -101,12 +125,12 @@ const MahjongSelector: React.FC = () => {
     // Join the array into a single string
     const resString = results.join('');
     setResString(resString)
-    console.log(resString);
   }
 
   const handleCleanBtnClick = () => {
     setSelectedTile(mahjongTiles)
   }
+
 
   return (
     <div className=''>
@@ -140,9 +164,12 @@ const MahjongSelector: React.FC = () => {
           ))
         ))}
       </div>
-      <div className='text-2xl'>{resString}</div>
+      {/* <div className='text-2xl'>{resString}</div> */}
       <div>
         <button onClick={handleCleanBtnClick}>Clean</button>
+      </div>
+      <div>
+        <StatusParser dataObject={currentStatus}></StatusParser>
       </div>
     </div>
   );
