@@ -25,9 +25,10 @@ const imgPath: Array<string> = [
 
 const MahjongSelector: React.FC = () => {
   const [selectedTile, setSelectedTile] = useState<Map<string, number>>(mahjongTiles);
+  const [resString, setResString] = useState<string>("")
 
   useEffect(() => {
-    console.log(selectedTile)
+    handleGenerateBtnClick()
   }, [selectedTile])
 
   const handleTileSelect = (tile: string) => {
@@ -42,7 +43,6 @@ const MahjongSelector: React.FC = () => {
 
     // Update the state with the new map
     setSelectedTile(newSelectedTile);
-    console.log(tile);
   };
 
   const handleTileDeselect = (tile: string) => {
@@ -57,7 +57,6 @@ const MahjongSelector: React.FC = () => {
 
     // Update the state with the new map
     setSelectedTile(newSelectedTile);
-    console.log(tile);
   };
 
   const handleGenerateBtnClick = () => {
@@ -101,15 +100,16 @@ const MahjongSelector: React.FC = () => {
 
     // Join the array into a single string
     const resString = results.join('');
+    setResString(resString)
     console.log(resString);
   }
 
   return (
-    <div className='w-[800px]'>
+    <div className=''>
       <h1>Select a Mahjong Tile</h1>
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap w-[650px]'>
         {imgPath.map((tile, index) => (
-          <div key={index} className='p-1 w-1/9 mr-4 mb-4'>
+          <div key={index} className='p-1 w-1/9 mb-4'>
             <button onClick={() => handleTileSelect(tile)}>
               <Image
                 src={`${imgRoot}${tile}.png`}
@@ -137,6 +137,7 @@ const MahjongSelector: React.FC = () => {
         ))}
       </div>
       <button onClick={handleGenerateBtnClick}>generate</button>
+      <div className='text-2xl'>{resString}</div>
     </div>
   );
 };
