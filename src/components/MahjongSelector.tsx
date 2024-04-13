@@ -104,6 +104,10 @@ const MahjongSelector: React.FC = () => {
     console.log(resString);
   }
 
+  const handleCleanBtnClick = () => {
+    setSelectedTile(mahjongTiles)
+  }
+
   return (
     <div className=''>
       <h1>Select a Mahjong Tile</h1>
@@ -137,6 +141,9 @@ const MahjongSelector: React.FC = () => {
         ))}
       </div>
       <div className='text-2xl'>{resString}</div>
+      <div>
+        <button onClick={handleCleanBtnClick}>Clean</button>
+      </div>
     </div>
   );
 };
