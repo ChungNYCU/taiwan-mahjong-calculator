@@ -15,7 +15,7 @@ const mahjongTiles: Map<string, number> = new Map([
   ["Sou1", 0], ["Sou2", 0], ["Sou3", 0], ["Sou4", 0], ["Sou5", 0], ["Sou6", 0], ["Sou7", 0], ["Sou8", 0], ["Sou9", 0],
   ["Ton", 0], ["Nan", 0], ["Shaa", 0], ["Pei", 0], ["Chun", 0], ["Hatsu", 0], ["Haku", 0]
 ]);
-const imgRoot: string = "/tileImgs/Regular/"
+const imgRoot: string = "/tileImgs/Black/"
 const imgPath: Array<string> = [
   "Man1", "Man2", "Man3", "Man4", "Man5", "Man6", "Man7", "Man8", "Man9",
   "Pin1", "Pin2", "Pin3", "Pin4", "Pin5", "Pin6", "Pin7", "Pin8", "Pin9",
