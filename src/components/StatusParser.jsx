@@ -39,7 +39,7 @@ const StatusParser = ({ dataObject }) => {
                             <div>打---</div>
                             <SingleTileDisplay tile={key} />
                             <div>---等---</div>
-                            {Object.entries(value).map(([key, value], index) => (<SingleTileDisplay tile={key} />))}
+                            {Object.entries(value).map(([key, value], index) => (<SingleTileDisplay tile={key} key={key+index}/>))}
                             <div className='ml-5'>{"共"}{total}{"張"}</div>
                         </div>)
                     }
