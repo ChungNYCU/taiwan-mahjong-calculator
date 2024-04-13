@@ -107,15 +107,15 @@ const MahjongSelector: React.FC = () => {
   return (
     <div className=''>
       <h1>Select a Mahjong Tile</h1>
-      <div className='flex flex-wrap w-[650px]'>
+      <div className='flex flex-wrap w-[360px]'>
         {imgPath.map((tile, index) => (
           <div key={index} className='p-1 w-1/9 mb-4'>
             <button onClick={() => handleTileSelect(tile)}>
               <Image
                 src={`${imgRoot}${tile}.png`}
                 alt={tile}
-                width={60}
-                height={100}
+                width={30}
+                height={50}
               />
             </button>
           </div>
@@ -129,14 +129,13 @@ const MahjongSelector: React.FC = () => {
               <Image
                 src={`${imgRoot}${tile}.png`}
                 alt={tile}
-                width={60}
-                height={100}
+                width={30}
+                height={50}
               />
             </button>
           ))
         ))}
       </div>
-      <button onClick={handleGenerateBtnClick}>generate</button>
       <div className='text-2xl'>{resString}</div>
     </div>
   );
