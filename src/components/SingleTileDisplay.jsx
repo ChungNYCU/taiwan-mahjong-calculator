@@ -8,7 +8,7 @@ const mahjongTiles = new Map([
     ["1s", "Sou1"], ["2s", "Sou2"], ["3s", "Sou3"], ["4s", "Sou4"], ["5s", "Sou5"], ["6s", "Sou6"], ["7s", "Sou7"], ["8s", "Sou8"], ["9s", "Sou9"],
     ["1z", "Ton"], ["2z", "Nan"], ["3z", "Shaa"], ["4z", "Pei"], ["5z", "Haku"], ["6z", "Hatsu"], ["7z", "Chun"], ["wait", "blank"]
 ]);
-const imgRoot = "/tileImgs/Black/"
+const imgRoot = "/tileImgs/Regular/"
 const SingleTileDisplay = ({ tile }) => {
     return (
         <div className='flex'>
@@ -18,7 +18,6 @@ const SingleTileDisplay = ({ tile }) => {
                 width={30}
                 height={50}
             />
-            <div>|</div>
         </div>
     )
 }

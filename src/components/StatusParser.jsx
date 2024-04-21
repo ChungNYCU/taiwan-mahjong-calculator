@@ -12,7 +12,7 @@ const StatusParser = ({ dataObject }) => {
                         return (
                             <div key={index} className='flex'>
                                 <SingleTileDisplay tile={key} />
-                                <div>---共{value.toString()}張</div> 
+                                <div>&#160;--- 共{value.toString()}張</div> 
                             </div>
                         )
                     })}
@@ -36,9 +36,9 @@ const StatusParser = ({ dataObject }) => {
                         const total = Object.entries(value).reduce((sum, [_, val]) => sum + val, 0);
 
                         return (<div key={index} className='flex'>
-                            <div>打---</div>
+                            <div>&#160;打---&#160;</div>
                             <SingleTileDisplay tile={key} />
-                            <div>---等---</div>
+                            <div>&#160;---等---&#160;</div>
                             {Object.entries(value).map(([key, value], index) => (<SingleTileDisplay tile={key} key={key+index}/>))}
                             <div className='ml-5'>{"共"}{total}{"張"}</div>
                         </div>)

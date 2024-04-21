@@ -11,7 +11,7 @@ const mahjongTiles: Map<string, number> = new Map([
   ["Sou1", 0], ["Sou2", 0], ["Sou3", 0], ["Sou4", 0], ["Sou5", 0], ["Sou6", 0], ["Sou7", 0], ["Sou8", 0], ["Sou9", 0],
   ["Ton", 0], ["Nan", 0], ["Shaa", 0], ["Pei", 0], ["Chun", 0], ["Hatsu", 0], ["Haku", 0]
 ]);
-const imgRoot: string = "/tileImgs/Black/"
+const imgRoot: string = "/tileImgs/Regular/"
 const imgPath: Array<string> = [
   "Man1", "Man2", "Man3", "Man4", "Man5", "Man6", "Man7", "Man8", "Man9",
   "Pin1", "Pin2", "Pin3", "Pin4", "Pin5", "Pin6", "Pin7", "Pin8", "Pin9",
@@ -62,6 +62,14 @@ const MahjongSelector: React.FC = () => {
     // Check if the tile is already in the map
     const count = newSelectedTile.get(tile) || 0;
 
+    if (count >= 4) return;
+
+    const totalSelectedCount = Array.from(newSelectedTile.values()).reduce((acc, curr) => acc + curr, 0);
+    if (totalSelectedCount >= 14) {
+      alert("You can only select up to 14 tiles.");
+      return;
+    }
+
     // Update the count
     newSelectedTile.set(tile, count + 1);
 
@@ -75,6 +83,8 @@ const MahjongSelector: React.FC = () => {
 
     // Check if the tile is already in the map
     const count = newSelectedTile.get(tile) || 0;
+
+    if (count === 0) return;
 
     // Update the count
     newSelectedTile.set(tile, count - 1);
@@ -131,6 +141,7 @@ const MahjongSelector: React.FC = () => {
     setSelectedTile(mahjongTiles)
   }
 
+  
 
   return (
     <div className=''>
@@ -149,7 +160,7 @@ const MahjongSelector: React.FC = () => {
           </div>
         ))}
       </div>
-      <div>
+      <div className='tile-container'>
         {Array.from(selectedTile).map(([tile, value]) => (
           // Create an array with 'value' number of elements and map over it to render the Image components
           [...Array(value)].map((_, index) => (
@@ -161,7 +172,6 @@ const MahjongSelector: React.FC = () => {
                   width={30}
                   height={50}
                 />
-                <div>|</div>
               </div>
 
             </button>
