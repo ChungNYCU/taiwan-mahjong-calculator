@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import syanten from 'syanten';
-import StatusParser from './StatusParser'
+import StatusParser from './StatusParser';
+import "../app/globals.css";
 
 const mahjongTiles: Map<string, number> = new Map([
   ["Man1", 0], ["Man2", 0], ["Man3", 0], ["Man4", 0], ["Man5", 0], ["Man6", 0], ["Man7", 0], ["Man8", 0], ["Man9", 0],
@@ -140,8 +141,6 @@ const MahjongSelector: React.FC = () => {
   const handleCleanBtnClick = () => {
     setSelectedTile(mahjongTiles)
   }
-
-  
 
   return (
     <div className=''>

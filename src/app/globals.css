@@ -16,6 +16,22 @@
   }
 }
 
+.w-\[360px\] {
+  width: 480px;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  border: 0.8px solid rgb(228, 228, 228);
+  border-radius: 4px;
+  padding: 5px;
+  width: 100%;
+  box-shadow: 5px 7px 5px 0 rgb(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -30,4 +46,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.tile-container {
+  display: flex;
+}
+
+.tile-container button {
+  margin: 3px;
 }
