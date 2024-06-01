@@ -145,7 +145,7 @@ const MahjongSelector: React.FC = () => {
   return (
     <div className=''>
       <h1>Select a Mahjong Tile</h1>
-      <div className='flex flex-wrap w-[360px]'>
+      <div className='flex flex-wrap w-[330px]'>
         {imgPath.map((tile, index) => (
           <div key={index} className='p-1 w-1/9 mb-4'>
             <button onClick={() => handleTileSelect(tile)}>
